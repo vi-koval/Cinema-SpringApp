@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style th:replace="fragments/styling :: styling"></style>
+    <meta charset="UTF-8">
+    <div th:insert="fragments/header :: imports"></div>
+    <title>Main page</title>
+</head>
+
+<body>
+<div th:insert="fragments/header :: header"></div>
+
+
+<div class="form-signin">
+    <h1 th:text="#{welcome.to.our.cinema}">Welcome to on-line cinema</h1>
+
+    <form action="#">
+        <div th:align="center" class="form-signin">
+            <a href="/login" class="btn btn-lg btn-primary" th:text="#{login}">Go to Login</a>
+        </div>
+        <div th:align="center" class="form-signin">
+            <a href="/registration" class="btn btn-lg btn-primary" th:text="#{registration.submit}">
+                Go to Registration</a>
+        </div>
+
+    </form>
+    </form>
+</div>
+</div>
+</body>
+</html>

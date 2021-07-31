@@ -1,14 +1,14 @@
 package com.example.cinemaspringapp.controller;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
-public class MainPageController {
 
-    @GetMapping("/main")
+@Controller
+public class MainController {
+
+    @GetMapping ("/main")
     public String mainPage(){
-        return "mainPage";
+        return "main";
     }
 }
