@@ -28,14 +28,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/registration", "/main", "/error", "/test", "/login").permitAll()
                 .antMatchers("/admin/**").hasRole(ROLE_ADMIN.toString())
-                .anyRequest()
-                .authenticated()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/profile-page", true)
-                .failureUrl("/login?error");
+                .failureUrl("/login?error")
+                .and()
+                .logout().permitAll();
     }
 
     @Override

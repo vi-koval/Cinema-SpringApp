@@ -40,7 +40,7 @@ public class LanguageConfig implements WebMvcConfigurer {
         ReloadableResourceBundleMessageSource messageResource=
                 new ReloadableResourceBundleMessageSource();
 
-        messageResource.setBasename("classpath:messages");
+        messageResource.setBasename("classpath:messages/messages");
         messageResource.setDefaultEncoding("UTF-8");
         return messageResource;
     }

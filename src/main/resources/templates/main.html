@@ -11,22 +11,17 @@
 <body>
 <div th:insert="fragments/header :: header"></div>
 
-
-<div class="form-signin">
-    <h1 th:text="#{welcome.to.our.cinema}">Welcome to on-line cinema</h1>
-
-    <form action="#">
-        <div th:align="center" class="form-signin">
-            <a href="/login" class="btn btn-lg btn-primary" th:text="#{login}">Go to Login</a>
+<h1 th:align="left" th:text="#{welcome.to.our.cinema}">Welcome</h1>
+<!--<div class="form-signin">-->
+<!--    <form action="#">-->
+        <div th:align="left" class="form-signin">
+            <a href="/login" class="btn btn-lg btn-primary btn-block" th:text="#{login}">Go to Login</a>
         </div>
-        <div th:align="center" class="form-signin">
-            <a href="/registration" class="btn btn-lg btn-primary" th:text="#{registration.submit}">
+        <div th:align="left" class="form-signin">
+            <a href="/registration" class="btn btn-lg btn-primary btn-block" th:text="#{registration.submit}">
                 Go to Registration</a>
         </div>
-
-    </form>
-    </form>
-</div>
-</div>
+<!--    </form>-->
+<!--</div>-->
 </body>
 </html>

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
   <div th:fragment="imports">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -16,6 +16,15 @@
       <a class="navbar-brand" th:href="@{/main}">Cinema</a>
     </div>
     <ul class="nav navbar-nav">
+      <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
+        <a class="nav-link active" th:href="@{/admin/all-orders}" th:text="#{admin}">Admin panel</a>
+      </li>
+      <li sec:authorize="isAuthenticated()" class="nav-item">
+        <a class="nav-link active" th:href="@{/profile}" th:text="#{profile}">Profile</a>
+      </li>
+      <li sec:authorize="isAuthenticated()" class="nav-item">
+        <a class="nav-link active" th:href="@{/logout}" th:text="#{logout}" >Logout</a>
+      </li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#" th:text="#{language}">Language
           <span class="caret"></span></a>

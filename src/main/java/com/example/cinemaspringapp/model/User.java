@@ -14,7 +14,7 @@ import java.util.Collections;
 @Getter
 @Setter
 @Entity
-@Table(name = "users") //hibernate will create a table named "user"
+@Table(name = "users") //hibernate will create a table named "users"
 public class User implements UserDetails {
 
     @Id
