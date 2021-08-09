@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <div th:replace="fragments/header :: imports"></div>
+  <title>Orders</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+  <div class="container">
+    <table class="table table-bordered">
+      <tr>
+        <th>
+          <a th:text="#{movie.id}" th:href="@{${#httpServletRequest.requestURI}
+                (page=${currentPage},
+                sortBy='id',
+                direction=${reverseDirection})}">Movie ID</a>
+        </th>
+        <th>
+          <a th:text="#{movie.name}" th:href="@{${#httpServletRequest.requestURI}
+                (page=${currentPage},
+                sortBy='movieName',
+                direction=${reverseDirection})}">Movie Name</a>
+        </th>
+        <th>
+          <a th:text="#{movie.country}" th:href="@{${#httpServletRequest.requestURI}
+                (page=${currentPage},
+                sortBy='country',
+                direction=${reverseDirection})}">Movie name</a>
+        </th>
+        <th>
+          <a th:text="#{movie.director}" th:href="@{${#httpServletRequest.requestURI}
+                (page=${currentPage},
+                sortBy='director',
+                direction=${reverseDirection})}">Movie Director</a>
+        </th>
+        <th>
+          <a th:text="#{movie.year}" th:href="@{${#httpServletRequest.requestURI}
+                (page=${currentPage},
+                sortBy='year',
+                direction=${reverseDirection})}">Movie Director</a>
+        </th>
+      </tr>
+      <tr th:each="movie : ${movies}">
+        <td th:text="${movie.getId()}">Movie ID</td>
+        <td th:text="${movie.getMovieName()}">Movie ID</td>
+        <td th:text="${movie.getCountry()}">Movie Country</td>
+        <td th:text="${movie.getDirector()}">Movie Director</td>
+        <td th:text="${movie.getYear()}">Movie Year</td>
+      </tr>
+    </table>
+    <div th:insert="fragments/pagination :: pagination-bar"></div>
+  </div>
+</div>
+
+    <p></p>
+      <a href="/user/admin/all-orders" class="btn btn-lg btn-primary btn-block" th:text="#{go.to.orders}" >
+        Go to Orders</a>
+
+
+    <!--    <nav class="navbar navbar-expand-md bg-dark navbar-dark">-->
+
+
+    <!--        &lt;!&ndash; Toggler/collapsibe Button &ndash;&gt;-->
+    <!--        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">-->
+    <!--            <span class="navbar-toggler-icon"></span>-->
+    <!--        </button>-->
+
+    <!--    <div class ="container">-->
+    <!--        <div class = "row">-->
+    <!--            <h1> List Movies </h1>-->
+    <!--        </div>-->
+    <!--        <div class = "row">-->
+    <!--            <div class = "col-lg-3">-->
+    <!--                <a th:href = "@{/movies/new}" class = "btn btn-primary btn-sm mb-3">Add Movie</a>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--        <table class = "table table-striped table-bordered">-->
+    <!--            <thead class = "table-dark">-->
+    <!--            <tr>-->
+    <!--                <th> Movie Name</th>-->
+    <!--                <th> Country </th>-->
+    <!--                <th> Director </th>-->
+    <!--                <th> Year </th>-->
+    <!--            </tr>-->
+    <!--            </thead>-->
+
+    <!--            <tbody>-->
+    <!--            <tr th:each = "movie: ${movies}">-->
+    <!--                <td th:text = "${movie.movieName}"></td>-->
+    <!--                <td th:text = "${movie.country}"></td>-->
+    <!--                <td th:text = "${movie.director}"></td>-->
+    <!--                <td th:text = "${movie.year}"></td>-->
+    <!--                <td>-->
+    <!--                    <a th:href = "@{/movies/edit/{id}(id=${movie.id})}"-->
+    <!--                       class = "btn btn-primary">Update</a>-->
+
+    <!--                    <a th:href = "@{/movies/{id}(id=${movie.id})}"-->
+    <!--                       class = "btn btn-danger">Delete</a>-->
+    <!--                </td>-->
+    <!--            </tr>-->
+    <!--            </tbody>-->
+    <!--        </table>-->
+    <!--    </div>-->
+
+    <!--<div class = "container">-->
+    <!--<div class = "row">-->
+    <!--    <div class = "col-lg-6 container justify-content-center card">-->
+    <!--        <h1>Create new Movie</h1>-->
+    <!--        <div class = "card-body">-->
+    <!--            <form th:action="@{/movies}" th:object="${movie}" method="POST">-->
+    <!--                <div class = "form-group">-->
+    <!--                    <label>Movie name</label>-->
+    <!--                    <input-->
+    <!--                            type="text"-->
+    <!--                            name ="movieName"-->
+    <!--                            field="*{movieName}"-->
+    <!--                            class="form-control"-->
+    <!--                            placeholder="enter movie name"-->
+    <!--                  />-->
+    <!--                    </div>-->
+    <!--                <div class = "form-group">-->
+    <!--                    <label>Country</label>-->
+    <!--                    <input-->
+    <!--                            type="text"-->
+    <!--                            name ="country"-->
+    <!--                            field="*{country}"-->
+    <!--                            class="form-control"-->
+    <!--                            placeholder="enter Country"-->
+    <!--                    />-->
+    <!--                </div>-->
+
+    <!--                    <div class = "form-group">-->
+    <!--                    <label>Director</label>-->
+    <!--                    <input-->
+    <!--                            type="text"-->
+    <!--                            name ="director"-->
+    <!--                            field="*{director}"-->
+    <!--                            class="form-control"-->
+    <!--                            placeholder="enter Director"-->
+    <!--                    />-->
+    <!--                    </div>-->
+
+    <!--                        <div class = "form-group">-->
+    <!--                    <label>Year</label>-->
+    <!--                    <input-->
+    <!--                            type="text"-->
+    <!--                            name ="year"-->
+    <!--                            field="*{year}"-->
+    <!--                            class="form-control"-->
+    <!--                            placeholder="enter year"-->
+    <!--                    />-->
+    <!--                </div>-->
+
+    <!--                <div class="footer-body">-->
+    <!--                    <button type="submit" class = "btn btn-primary">Submit</button>-->
+    <!--                </div>-->
+    <!--            </form>-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!--    <div class = "row">-->
+    <!--        <div class = "col-lg-3">-->
+    <!--            <a th:href="@{/movies/new}" class = btn btn-primary btn-sm mb-3>Add Movie</a>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--    </nav>-->
+
+
+
+
+</body>
+</html>

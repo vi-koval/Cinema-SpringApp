@@ -26,7 +26,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/registration", "/main", "/error", "/test", "/login").permitAll()
+                .antMatchers("/","/css*", "/error", "/test","/schedule","/registration").permitAll()
+                .antMatchers("/main").not().fullyAuthenticated()
                 .antMatchers("/admin/**").hasRole(ROLE_ADMIN.toString())
                 .anyRequest().authenticated()
                 .and()
@@ -50,4 +51,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setUserDetailsService(userService);
         return provider;
     }
+
+
 }

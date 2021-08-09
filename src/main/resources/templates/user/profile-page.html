@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <div th:replace="fragments/header :: imports"></div>
@@ -23,8 +23,26 @@
             <th th:text="#{email}"></th>
             <td th:text="${user.getEmail()}"></td>
         </tr>
-
     </table>
+    <div sec:authorize="hasRole('ROLE_USER')">
+        <table class="table table-bordered caption-top">
+            <caption th:text="#{your.orders}">Your orders</caption>
+            <tr>
+                <th th:text="#{date}">Date</th>
+                <th th:text="#{movie}">Movie</th>
+                <th th:text="#{seat}">Seat</th>
+            </tr>
+
+            <tr th:each="order : ${userOrders}">
+                <td th:text="${order.getDate}">Date</td>
+                <td th:text="${order.getSeat}">Seat</td>
+            <tr th:each="movie : ${userMovie}">
+                <td th:text="${movie.getMovieName()}">Movie name</td>
+            <tr th:each="movie : ${userMovie}">
+                <td th:text="${movie.getCountry()}">Movie country</td>
+            </tr>
+        </table>
+    </div>
 </div>
 </body>
 </html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div th:replace="fragments/header :: imports"></div>
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container">
+    <table class="table table-bordered">
+            <th>
+                <a th:text="#{movie.name}" th:href="@{${#httpServletRequest.requestURI}
+                (page=${currentPage},
+                sortBy='movieId',
+                direction=${reverseDirection})}">Movie Name</a>
+            <td th:text="#{monday}">Monday</td>
+        <td th:text="#{tuesday}">tuesday</td>
+        <td th:text="#{wednesday}">wednesday</td>
+        <td th:text="#{thursday}">thursday</td>
+        <td th:text="#{friday}">friday</td>
+        <td th:text="#{saturday}">Saturday</td>
+        <td th:text="#{sunday}">Sunday</td>
+
+        <a href="/cinema-hall" class="btn btn-lg btn-secondary btn-block" th:text="#{time}">
+            Go to Cinema Hall</a>
+
+        <tr th:each="movie : ${movies}">
+            <td th:text="${movies.get(0)}">Movie Name</td>
+        </tr>
+
+
+    </table>
+    <div th:insert="fragments/pagination :: pagination-bar"></div>
+
+</div>
+</body>
+</html>

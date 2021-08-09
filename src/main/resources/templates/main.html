@@ -11,13 +11,13 @@
 <body>
 <div th:insert="fragments/header :: header"></div>
 
-<h1 th:align="left" th:text="#{welcome.to.our.cinema}">Welcome</h1>
+<h1 th:align="center" th:text="#{welcome.to.our.cinema}">Welcome</h1>
 <!--<div class="form-signin">-->
 <!--    <form action="#">-->
         <div th:align="left" class="form-signin">
             <a href="/login" class="btn btn-lg btn-primary btn-block" th:text="#{login}">Go to Login</a>
         </div>
-        <div th:align="left" class="form-signin">
+        <div class="form-signin" th:align="left">
             <a href="/registration" class="btn btn-lg btn-primary btn-block" th:text="#{registration.submit}">
                 Go to Registration</a>
         </div>

@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import static com.example.cinemaspringapp.messages.Messages.*;
-import static com.example.cinemaspringapp.model.Role.ROLE_ADMIN;
 import static com.example.cinemaspringapp.model.Role.ROLE_USER;
 
 @Service
@@ -48,11 +47,7 @@ public class UserService implements UserDetailsService {
 
 
         userRepository.save(newUser);
-
-
     }
-
-
 
 
     @Override

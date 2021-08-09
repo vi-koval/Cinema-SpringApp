@@ -13,11 +13,11 @@
 <nav th:fragment="header" class="navbar sticky-top navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" th:href="@{/main}">Cinema</a>
+      <a class="navbar-brand" th:href="@{/schedule}">Schedule</a>
     </div>
     <ul class="nav navbar-nav">
       <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-        <a class="nav-link active" th:href="@{/admin/all-orders}" th:text="#{admin}">Admin panel</a>
+        <a class="nav-link active" th:href="@{user/admin/all-orders}" th:text="#{admin}">Admin panel</a>
       </li>
 <!--      <li sec:authorize="isAuthenticated()" class="nav-item">-->
 <!--        <a class="nav-link active" th:href="@{/profile}" th:text="#{profile}">Profile</a>-->
