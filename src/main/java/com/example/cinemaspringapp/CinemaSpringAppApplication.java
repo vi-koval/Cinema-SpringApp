@@ -71,7 +71,7 @@ public CommandLineRunner runApplication(UserRepository userRepository,
                            .movieName("Movie name" + i)
                            .director("Director" + i)
                            .country("Country" + i)
-                           .year(i)
+                           .year("year" + i)
                            .build());
        }
         movieRepository.saveAll(movies);

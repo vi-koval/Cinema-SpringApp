@@ -6,7 +6,7 @@ import javax.validation.constraints.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserDTO {  //validation of data transfers, sets the parameters of suitable for us data
+public class UserDTO {
 
     @Size(min = 3, max = 20, message = "{firstName.error}")
     @NotBlank

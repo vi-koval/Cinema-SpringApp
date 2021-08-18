@@ -1,19 +1,23 @@
 package com.example.cinemaspringapp.controller;
 
+import com.example.cinemaspringapp.dto.MovieDTO;
+import com.example.cinemaspringapp.dto.UserDTO;
+import com.example.cinemaspringapp.exception.MovieException;
+import com.example.cinemaspringapp.exception.UserException;
 import com.example.cinemaspringapp.model.Movie;
 import com.example.cinemaspringapp.model.Order;
-import com.example.cinemaspringapp.model.User;
+import com.example.cinemaspringapp.repository.MovieRepository;
+import com.example.cinemaspringapp.repository.OrderRepository;
 import com.example.cinemaspringapp.services.MovieService;
 import com.example.cinemaspringapp.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +28,12 @@ public class AdminController {
    private final OrderService orderService;
    private final MovieService movieService;
 
-
    @Autowired
     public AdminController(OrderService orderService,
                            MovieService movieService) {
        this.orderService = orderService;
        this.movieService = movieService;
+
    }
 
    @GetMapping("/all-orders")
@@ -81,17 +85,56 @@ public class AdminController {
        return "user/admin/movies";
    }
 
-   @GetMapping("/new")
-   public String newMovie (Model model){
 
-       model.addAttribute("movie", new Movie());
-       return "user/admin/orders";
+    @GetMapping("movies/new")
+    public String createNewMovie(@ModelAttribute ("movie")MovieDTO movieDTO, Model model) {
+        model.addAttribute("exception", "");
+        return "user/admin/create-movie";
+
+    }
+
+    @PostMapping("/movies")
+    public String saveNewMovie(
+            @ModelAttribute("movie") @Valid MovieDTO movieDTO,
+            BindingResult bindingResult,
+            Model model) {
+
+        model.addAttribute("exception", "");
+
+        if (bindingResult.hasErrors()) {
+            return "/error";
+        }
+
+        try {
+            movieService.saveMovie(movieDTO);
+        } catch (MovieException e) {
+            model.addAttribute("exception", movieDTO.getMovieName());
+            return "user/admin/movies";
+        }
+        return "redirect:/user/admin/movies";
+    }
+
+@GetMapping("movies/delete")
+   public String deleteMovie(@RequestParam("id") long id){
+       movieService.deleteMovieById(id);
+       return "redirect:/user/admin/movies";
    }
 
+   @GetMapping("/movies/edit/{id}")
+    public String editMovieForm (@PathVariable Long id, Model model) {
+    model.addAttribute("movie", movieService.getMovieById(id));
+    return "/user/admin/edit-movie";
+   }
 
-//   @PostMapping("/movies")
-//   public String saveMovies (@ModelAttribute ("movie") Movie movie){
-//       movieService.saveMovies((List<Movie>) movie);
-//       return "redirect:/user/admin/orders";
-//   }
+@PostMapping("/movies/{id}")
+   public String editMovie (@PathVariable Long id,
+                            @ModelAttribute ("movie") Movie movie, Model model) {
+
+       Movie existingMovie = movieService.getMovieById(id);
+       existingMovie.setMovieName(movie.getMovieName());
+
+
+}
+
+
 }

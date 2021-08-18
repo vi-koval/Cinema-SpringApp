@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
-      xmlns="http://www.w3.org/1999/html">
+      xmlns="http://www.w3.org/1999/html" >
 <head>
   <meta charset="UTF-8">
   <div th:replace="fragments/header :: imports"></div>
@@ -8,6 +8,9 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
+
+<h1>List of Movies</h1>
+<p></p>
   <div class="container">
     <table class="table table-bordered">
       <tr>
@@ -42,14 +45,34 @@
                 direction=${reverseDirection})}">Movie Director</a>
         </th>
       </tr>
+
+      <div class = "row">
+        <div class = "col-lg-3">
+          <a th:href = "@{~/user/admin/movies/new}" class = "btn btn-primary btn-sm mb-3"> Add Movie</a>
+        </div>
+      </div>
+
       <tr th:each="movie : ${movies}">
         <td th:text="${movie.getId()}">Movie ID</td>
         <td th:text="${movie.getMovieName()}">Movie ID</td>
         <td th:text="${movie.getCountry()}">Movie Country</td>
         <td th:text="${movie.getDirector()}">Movie Director</td>
         <td th:text="${movie.getYear()}">Movie Year</td>
+        <td>
+          <a th:href="@{~/user/admin/movies/delete/(id=${movie.id})}"
+             class="btn btn-danger">Delete</a>
+        </td>
+        <td>
+          <a th:href="@{~/user/admin/movies/edit/(id=${movie.id})}"
+             class="btn btn-primary">Edit</a>
+        </td>
+
+
+
       </tr>
     </table>
+
+
     <div th:insert="fragments/pagination :: pagination-bar"></div>
   </div>
 </div>

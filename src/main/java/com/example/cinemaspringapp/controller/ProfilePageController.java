@@ -51,8 +51,7 @@ public class ProfilePageController {
 
     @GetMapping("/{id}")
     public String getMovies(@PathVariable("id") long id, Model model){
-        Optional<Movie> movies = movieRepository.findById(id);
+        movieRepository.findById(id);
         return "user/profile-page";
     }
-
 }

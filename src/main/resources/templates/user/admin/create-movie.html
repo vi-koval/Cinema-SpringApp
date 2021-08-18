@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Create new movie</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body>
+
+<br>
+<br>
+<div class = "container">
+  <div class = "row">
+    <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+      <h1 class = "text-center"> Create New Movie </h1>
+      <div class = "card-body">
+        <form th:action="@{/user/admin/movies}" th:object = "${movie}" method="POST">
+
+          <div class ="form-group">
+            <label> Movie name </label>
+            <input
+                    type = "text"
+                    name = "movieName"
+                    th:field = "*{movieName}"
+                    class = "form-control"
+                    placeholder="Enter movie name"
+            />
+          </div>
+
+          <div class ="form-group">
+            <label> Country </label>
+            <input
+                    type = "text"
+                    name = "country"
+                    th:field = "*{country}"
+                    class = "form-control"
+                    placeholder="Enter movie country"
+            />
+          </div>
+
+          <div class ="form-group">
+            <label> Director </label>
+            <input
+                    type = "text"
+                    name = "director"
+                    th:field = "*{director}"
+                    class = "form-control"
+                    placeholder="Enter movie director"
+            />
+          </div>
+
+          <div class ="form-group">
+            <label> Year </label>
+            <input
+                    type = "text"
+                    name = "year"
+                    th:field = "*{year}"
+                    class = "form-control"
+                    placeholder="Enter movie year"
+            />
+          </div>
+
+          <div class = "box-footer">
+            <button type="submit" class = "btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
