@@ -27,6 +27,22 @@
     <div sec:authorize="hasRole('ROLE_USER')">
         <table class="table table-bordered caption-top">
             <caption th:text="#{your.orders}">Your orders</caption>
+
+            <th>
+                <a th:text="#{user.firsName}" th:href="@{${#httpServletRequest.requestURI}
+                (page=${currentPage},
+                sortBy='userName',
+                direction=${reverseDirection})}">User ID</a>
+            </th>
+
+            <th>
+                <a th:text="#{movie.name}" th:href="@{${#httpServletRequest.requestURI}
+                (page=${currentPage},
+                sortBy='movieId',
+                direction=${reverseDirection})}">Movie Name</a>
+            </th>
+
+
             <tr>
                 <th th:text="#{date}">Date</th>
                 <th th:text="#{movie}">Movie</th>
@@ -38,9 +54,9 @@
                 <td th:text="${order.getSeat}">Seat</td>
             <tr th:each="movie : ${userMovie}">
                 <td th:text="${movie.getMovieName()}">Movie name</td>
-            <tr th:each="movie : ${userMovie}">
-                <td th:text="${movie.getCountry()}">Movie country</td>
-            </tr>
+<!--            <tr th:each="movie : ${userMovie}">-->
+<!--                <td th:text="${movie.getCountry()}">Movie country</td>-->
+<!--            </tr>-->
         </table>
     </div>
 </div>

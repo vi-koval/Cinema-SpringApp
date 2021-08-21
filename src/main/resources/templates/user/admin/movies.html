@@ -64,7 +64,7 @@
         <td th:text="${movie.getYear()}">Movie Year</td>
         <td>
 
-          <a th:href="@{~/user/admin/movies/edit/(id=${movie.id})}"
+          <a th:href="@{~/user/admin/edit-movie/{id}(id=${movie.id})}"
              class="btn btn-primary">Edit</a>
 
           <a th:href="@{~/user/admin/movies/delete/(id=${movie.id})}"

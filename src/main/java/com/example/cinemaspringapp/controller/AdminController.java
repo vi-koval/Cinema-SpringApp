@@ -1,13 +1,9 @@
 package com.example.cinemaspringapp.controller;
 
 import com.example.cinemaspringapp.dto.MovieDTO;
-import com.example.cinemaspringapp.dto.UserDTO;
 import com.example.cinemaspringapp.exception.MovieException;
-import com.example.cinemaspringapp.exception.UserException;
 import com.example.cinemaspringapp.model.Movie;
 import com.example.cinemaspringapp.model.Order;
-import com.example.cinemaspringapp.repository.MovieRepository;
-import com.example.cinemaspringapp.repository.OrderRepository;
 import com.example.cinemaspringapp.services.MovieService;
 import com.example.cinemaspringapp.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,7 +98,7 @@ public class AdminController {
         model.addAttribute("exception", "");
 
         if (bindingResult.hasErrors()) {
-            return "/error";
+            return "error";
         }
 
             try {
@@ -122,18 +118,20 @@ public class AdminController {
         }
 
 
-        @GetMapping("/movies/edit/{id}")
-        public String editMovieForm (@PathVariable Long id, Model model) {
-            model.addAttribute("movie", movieService.getMovieById(id));
+        @GetMapping("/edit-movie/{id}")
+        public String editMovieForm (@PathVariable (value = "id") long id, Model model) {
+            Movie movie = movieService.getOneMovieById(id);
+            model.addAttribute("movie", movie);
             return "/user/admin/edit-movie";
         }
 
 
-        @PostMapping("/movies/{id}")
+        @PostMapping("/edit-movie/{id}")
         public String editMovie (@PathVariable Long id,
-                @ModelAttribute("movie") Movie movie, Model model){
+                                 @ModelAttribute("movie") Movie movie, Model model){
 
-            Movie existingMovie = (Movie) movieService.getMovieById(id);
+
+            Movie existingMovie = movieService.getOneMovieById(id);
 
             existingMovie.setId(id);
             existingMovie.setMovieName(movie.getMovieName());
@@ -141,10 +139,10 @@ public class AdminController {
             existingMovie.setCountry(movie.getCountry());
             existingMovie.setYear(movie.getYear());
 
-
             movieService.editMovie(existingMovie);
             return "redirect:/user/admin/movies";
 
         }
+
     }
 

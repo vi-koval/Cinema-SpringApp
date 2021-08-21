@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="ISO-8859-1">
-    <title>Create new movie</title>
+    <title>Update movie</title>
     <link rel="stylesheet"
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -15,9 +15,11 @@
 <div class = "container">
     <div class = "row">
         <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-            <h1 class = "text-center"> Edit Movie </h1>
+            <h1 class = "text-center"> Update movie </h1>
             <div class = "card-body">
-                <form th:action="@{/user/admin/movies/{id} (id=${movie.id()})}" th:object = "${movie}" method="POST">
+                <form th:action="@{/user/admin/edit-movie/{id} (id=${movie.id})}" th:object = "${movie}" method="POST">
+
+                    <input type="hidden" th:field = "*{id}">
 
                     <div class ="form-group">
                         <label> Movie name </label>

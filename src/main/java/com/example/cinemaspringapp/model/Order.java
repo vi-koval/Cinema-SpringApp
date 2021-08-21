@@ -16,6 +16,8 @@ public class Order {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+    private boolean bought = false;
+    private int time;
     private int seat;
     private int price;
 
@@ -29,11 +31,13 @@ public class Order {
     private User user;
 
     @Builder
-    public Order (int seat, LocalDateTime date, User user, Movie movie){
+    public Order (int seat, boolean bought, int time,  LocalDateTime date, User user, Movie movie){
         this.seat = seat;
         this.date = date;
         this.user = user;
         this.movie = movie;
+        this.bought = bought;
+        this.time = time;
     }
 
     public Timestamp getDate() {
